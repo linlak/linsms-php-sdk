@@ -1,0 +1,20 @@
+{
+    "name": "linlak/linsms-php-sdk",
+    "description": "This library has been developed to enable developers to integrate our linsms getway into their systems",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "linlak",
+            "email": "nowomukama.linlak.linus@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LinSms\\": "src/"
+        }
+    }
+}
