@@ -2,6 +2,7 @@
     "name": "linlak/linsms-php-sdk",
     "description": "This library has been developed to enable developers to integrate our linsms getway into their systems",
     "type": "library",
+    "keywords":["linsms","sms gateway","sms","sms api"],
     "license": "MIT",
     "authors": [
         {
