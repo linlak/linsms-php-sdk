@@ -1,15 +1,18 @@
 {
     "name": "linlak/linsms-php-sdk",
     "description": "This library has been developed to enable developers to integrate our linsms getway into their systems",
+    "homepage": "https://lin-sms.com/developer",
+    "support": {
+        "issues": "https://github.com/linlak/linsms-php-sdk/issues",
+        "source": "https://github.com/linlak/linsms-php-sdk"
+    },
     "type": "library",
-    "keywords":["linsms","sms gateway","sms","sms api"],
+    "keywords": ["linsms", "sms gateway", "sms", "sms api", "online payment"],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "linlak",
-            "email": "nowomukama.linlak.linus@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "linlak",
+        "email": "nowomukama.linlak.linus@gmail.com"
+    }],
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.1",

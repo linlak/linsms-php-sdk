@@ -2,11 +2,9 @@
 
 namespace LinSms\Response;
 
-use LinSms\Traits\ResponseTrait;
 
-class SmsResponse
+class SmsResponse extends LinResponse
 {
-    use ResponseTrait;
     /**
      * @var boolean
      */
@@ -30,7 +28,7 @@ class SmsResponse
 
     public function __construct($response)
     {
-        $this->getStatus($response);
+        parent::__construct($response);
     }
 
     public function getMessage()

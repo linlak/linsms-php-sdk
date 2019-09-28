@@ -2,12 +2,11 @@
 
 namespace LinSms\Response;
 
-use LinSms\Traits\ResponseTrait;
 use LinSms\Util\HttpCodes;
 
-class BalanceResponse
+class BalanceResponse extends LinResponse
 {
-    use ResponseTrait;
+
     /**
      * @var int
      */

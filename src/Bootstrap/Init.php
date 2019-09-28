@@ -2,15 +2,18 @@
 
 namespace LinSms\Bootstrap;
 
-use LinSms\Contracts\InitContract;
-use LinSms\Util\Constants;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\RequestException;
-use LinSms\Response\BalanceResponse;
-use LinSms\Response\SmsResponse;
 use App\Services\Traits\Sms\ParseContacts;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use LinSms\Contracts\InitContract;
+use LinSms\Response\BalanceResponse;
+use LinSms\Response\DepositResponse;
+use LinSms\Response\PayoutResponse;
+use LinSms\Response\SmsResponse;
+use LinSms\Response\WalletBalanceResponse;
+use LinSms\Util\Constants;
+use Psr\Http\Message\ResponseInterface;
 
 class Init implements InitContract
 {
@@ -151,5 +154,60 @@ class Init implements InitContract
             return $output;
         }
         return false;
+    }
+    //payments
+    public function walletBalance()
+    {
+        $req = $this->genRequest('GET', Constants::PAY_BAL);
+        $response = $this->send($req);
+        //pass response
+        return new WalletBalanceResponse($response);
+    }
+
+    public function deposit(string $mobile_number, int $amount, $payload = [])
+    {
+        $data = [
+            'phone_number' => $mobile_number,
+            'amount' => $amount,
+            'payload' => $payload
+        ];
+
+        $req = $this->genRequest('POST', Constants::DEPOSIT_URI, $data);
+
+        $response = $this->send($req);
+        //pass response
+        return new DepositResponse($response);
+    }
+
+    public function depositStatus($reference_id)
+    {
+        $req = $this->genRequest('GET', Constants::DEPOSIT_STATUS . $reference_id);
+        $response = $this->send($req);
+        //pass response
+        return new DepositResponse($response);
+    }
+
+    //payout
+
+    public function payout(String $mobile_number, int $amount, $payload = [])
+    {
+        $data = [
+            'phone_number' => $mobile_number,
+            'amount' => $amount,
+            'payload' => $payload
+        ];
+
+        $req = $this->genRequest('POST', Constants::PAYOUT_URI, $data);
+
+        $response = $this->send($req);
+        return new PayoutResponse($response);
+    }
+
+    public function payoutStatus($reference_id)
+    {
+        $req = $this->genRequest('GET', Constants::PAYOUT_STATUS . $reference_id);
+        $response = $this->send($req);
+        //pass response
+        return new PayoutResponse($response);
     }
 }
